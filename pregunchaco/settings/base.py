@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.apps_pregunchaco',
 ]
 
 MIDDLEWARE = [
@@ -54,12 +55,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'pregunchaco.urls'
 
-DIR_TEMPLATES_BASE= os.path.join(os.path.dirname(BASE_DIR),'templates')
+DIR_TEMPLATES = os.path.join(os.path.dirname(BASE_DIR),'templates')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [DIR_TEMPLATES],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
