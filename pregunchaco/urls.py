@@ -20,4 +20,7 @@ from apps.apps_pregunchaco import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('registro', views.registro, name='registro'),
+    path('tablaposiciones', views.tablaposiciones, name='tablaposiciones'),
+    path('staff', views.staff, name='staff'),
 ]

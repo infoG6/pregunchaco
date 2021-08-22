@@ -81,8 +81,13 @@ WSGI_APPLICATION = 'pregunchaco.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(os.path.dirname(BASE_DIR),'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'pregunchaco',
+        'USER': 'root',
+        'PASSWORD':'',
+        'HOST':'localhost',
+        'PORT': '3306'
+
     }
 }
 
