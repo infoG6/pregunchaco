@@ -75,41 +75,34 @@
   </header><!-- End Header -->
 
   <main id="main">
-<!-- ======= Appointment Section ======= -->
-<section id="appointment" class="appointment section-bg">
-    <div class="container">
+    <!-- ======= Appointment Section ======= -->
+    <section id="appointment" class="appointment section-bg">
+        <div class="container">
+  
+          <div class="section-title">
+            <h2>Make an Appointment</h2>
+            <h2>Ingrese Datos</h2>
+          </div>
+  
+          <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
+            <div class="row">
+                <div class="mb-3">
+                    <label for="usuario" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" id="usuario" placeholder="">
+                </div>
+                <div class="mb-3">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                    <input type="password" class="form-control" id="inputPassword">
+                </div>
+      
+            </div>
 
-      <div class="section-title">
-        <h2>Make an Appointment</h2>
-        <p>Ingrese los datos para poder registrarse</p>
-      </div>
-
-      <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
-        <div class="row">
-          <div class="col-md-4 form-group">
-            <input type="text" name="name" class="form-control" id="name" placeholder="Su nombre" data-rule="minlen:4" data-msg="Ingrese Un nomrbe Con Almenos 4 letras">
-            <div class="validate"></div>
-          </div>
-          <div class="col-md-4 form-group mt-3 mt-md-0">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Su Email" data-rule="email" data-msg="Por Favor Ingrese Un Email Valido">
-            <div class="validate"></div>
-          </div>
-          <div class="col-md-4 form-group mt-3 mt-md-0">
-            <input type="password" name="password" class="form-control datepicker" id="password" placeholder="Ingrese Constraseña" data-rule="minlen:4" data-msg="Ingrese una contraseña valida">
-            <div class="validate"></div>
-          </div>
+            <div class="text-center"><button type="submit">Loguearse</button></div>
+          </form>
+  
         </div>
-
-        <div class="mb-3">
-          <div class="loading">Loading</div>
-          <div class="error-message"></div>
-          <div class="sent-message">Su usuario a sido registrado</div>
-        </div>
-        <div class="text-center"><button type="submit">Registrarse</button></div>
-      </form>
-
-    </div>
-  </section><!-- End Appointment Section -->
+      </section><!-- End Appointment Section -->
+  
 
   </main><!-- End #main -->
 
