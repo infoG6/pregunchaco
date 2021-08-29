@@ -1,34 +1,76 @@
 from django.db import models
-from django.utils import timezone
+from django.conf import settings
 
-# Create your models here.
-class Usuario(models.Model):
-    Id_usuario =models.BigAutoField(primary_key=True)
-    nombre=models.CharField(max_length=100, help_text="Nombre de usuario")
-    correo=models.CharField(max_length=200, help_text="e-mail")
-    password=models.CharField(max_length=100, help_text="Contraseña")
+from django.contrib.auth.models import User
 
-class Nivel(models.Model):
-    Id_Nivel = models.BigAutoField(primary_key=True)
-    nombre	=models.CharField(max_length=100, help_text="Nombre del Nivel")
+import random
 
-class Preguntas(models.Model):
-    Id_Pregunta =models.BigAutoField(primary_key=True)
-    Fk_Nivel	=models.ForeignKey(Nivel, on_delete=models.CASCADE)
-    Pregunta	=models.CharField(max_length=100, help_text="Pregunta")
-    Respuesta1	=models.CharField(max_length=100, help_text="Respuesta 1")
-    Respuesta2	=models.CharField(max_length=100, help_text="Respuesta 2")
-    Respuesta3	=models.CharField(max_length=100, help_text="Respuesta 3")
-    Respuesta4  =models.CharField(max_length=100, help_text="Respuesta 4")
-    RespuestaCorrecta=models.CharField(max_length=100, help_text="Pregunta")
+class Pregunta(models.Model):
 
-class TablaPuntuacion(models.Model):
-    day  = timezone.now()
-    hour = timezone.now()
-    formatedHour = hour.strftime("%Y/%m/%d %H:%M:%S")
-    Id_tablapuntuacion =models.BigAutoField(primary_key=True)
-    fechaHora= models.CharField(max_length=50, default=formatedHour)
-    fk_usuario=models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    puntuacion = models.IntegerField()
-    
+	NUMER_DE_RESPUESTAS_PERMITIDAS = 1
 
+	texto = models.TextField(verbose_name='Texto de la pregunta')
+	max_puntaje = models.DecimalField(verbose_name='Maximo Puntaje', default=3, decimal_places=2, max_digits=6)
+
+	def __str__(self):
+		return self.texto 
+
+
+class ElegirRespuesta(models.Model):
+
+	MAXIMO_RESPUESTA = 4
+
+	pregunta = models.ForeignKey(Pregunta, related_name='opciones', on_delete=models.CASCADE)
+	correcta = models.BooleanField(verbose_name='¿Es esta la pregunta correcta?', default=False, null=False)
+	texto = models.TextField(verbose_name='Texto de la respuesta')
+
+
+	def __str__(self):
+		return self.texto
+
+class QuizUsuario(models.Model):
+	usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+	puntaje_total = models.DecimalField(verbose_name='Puntaje Total', default=0, decimal_places=2, max_digits=10)
+
+	def crear_intentos(self, pregunta):
+		intento = PreguntasRespondidas(pregunta=pregunta, quizUser=self)
+		intento.save()
+
+	def obtener_nuevas_preguntas(self):
+		respondidas = PreguntasRespondidas.objects.filter(quizUser=self).values_list('pregunta__pk', flat=True)
+		preguntas_restantes = Pregunta.objects.exclude(pk__in=respondidas)
+		if not preguntas_restantes.exists():
+			return None
+		return random.choice(preguntas_restantes)
+
+
+	def validar_intento(self, pregunta_respondida, respuesta_selecionada):
+		if pregunta_respondida.pregunta_id != respuesta_selecionada.pregunta_id:
+			return
+
+		pregunta_respondida.respuesta_selecionada = respuesta_selecionada
+		if respuesta_selecionada.correcta is True:
+			pregunta_respondida.correcta = True
+			pregunta_respondida.puntaje_obtenido = respuesta_selecionada.pregunta.max_puntaje
+			pregunta_respondida.respuesta = respuesta_selecionada
+
+		else:
+			pregunta_respondida.respuesta = respuesta_selecionada
+
+		pregunta_respondida.save()
+
+		self.actualizar_puntaje()
+
+	def actualizar_puntaje(self):
+		puntaje_actualizado = self.intentos.filter(correcta=True).aggregate(
+			models.Sum('puntaje_obtenido'))['puntaje_obtenido__sum']
+
+		self.puntaje_total = puntaje_actualizado
+		self.save()
+
+class PreguntasRespondidas(models.Model):
+	quizUser = models.ForeignKey(QuizUsuario, on_delete=models.CASCADE, related_name='intentos')
+	pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE)
+	respuesta = models.ForeignKey(ElegirRespuesta, on_delete=models.CASCADE, null=True)
+	correcta  = models.BooleanField(verbose_name='¿Es esta la respuesta correcta?', default=False, null=False)
+	puntaje_obtenido = models.DecimalField(verbose_name='Puntaje Obtenido', default=0, decimal_places=2, max_digits=6)

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<form method="POST">
+	{% csrf_token %}
+
+	{{form.as_p}}
+	<input class="btn btn-primary" type="submit" value="Loguearse">
+	<a href="/registro" class="btn-get-started scrollto">Registrarse</a>
+
+
+</form>
+{% endblock %}

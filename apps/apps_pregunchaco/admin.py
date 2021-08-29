@@ -1,18 +1,31 @@
 from django.contrib import admin
-from apps.apps_pregunchaco.models import Preguntas
-from apps.apps_pregunchaco.models import Nivel
 
-# Register your models here.
-class PreguntasAdmin(admin.ModelAdmin):
-    list_display=('Id_Pregunta','Fk_Nivel','Pregunta','Respuesta1','Respuesta2','Respuesta3','Respuesta4','RespuestaCorrecta')
-    search_fields=('Id_Pregunta','Fk_Nivel','Pregunta','Respuesta1','Respuesta2','Respuesta3','Respuesta4','RespuestaCorrecta')
-    list_per_page =25
+from .models import Pregunta, ElegirRespuesta, PreguntasRespondidas, QuizUsuario
 
-admin.site.register(Preguntas,PreguntasAdmin)
+from .forms import ElegirInlineFormset
 
-class NivelAdmin(admin.ModelAdmin):
-    list_display=('Id_Nivel','nombre')
-    search_fields=('Id_Nivel','nombre')
-    list_per_page =25
+class ElegirRespuestaInline(admin.TabularInline):
+	model = ElegirRespuesta
+	can_delete =False
+	max_num = ElegirRespuesta.MAXIMO_RESPUESTA
+	min_num = ElegirRespuesta.MAXIMO_RESPUESTA
+	formset = ElegirInlineFormset
 
-admin.site.register(Nivel,NivelAdmin)
+class PreguntaAdmin(admin.ModelAdmin):
+	model = Pregunta
+	inlines = (ElegirRespuestaInline, )
+	list_display = ['texto',]
+	search_fields = ['texto', 'preguntas__texto']
+
+
+class PreguntasRespondidasAdmin(admin.ModelAdmin):
+	list_display = ['pregunta', 'respuesta', 'correcta', 'puntaje_obtenido']
+
+	class Meta:
+		model = PreguntasRespondidas
+
+
+admin.site.register(PreguntasRespondidas)
+admin.site.register(Pregunta, PreguntaAdmin)
+admin.site.register(ElegirRespuesta)
+admin.site.register(QuizUsuario)

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
+
 <html lang="es">
 
 <head>
@@ -12,7 +12,7 @@
 
   <!-- Favicons -->
   
-  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="/static/img/favicon.png" rel="icon">
   <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -29,7 +29,7 @@
   <link href="/static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="/static/css/style.css" rel="stylesheet">
+  <link href="../static/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Medilab - v4.3.0
@@ -59,7 +59,7 @@
     <div class="container d-flex align-items-center">
 
       <!--<h1 class="logo me-auto"><a href="index.html">PREGUNCHACO</a></h1> -->
-      <a href="index.html" class="logo me-auto"><img src="/static/img/logo.gif" alt="" class="img-fluid">PREGUNCHACO</a>
+      <a href="index.html" class="logo me-auto"><img src="assets/img/logo.gif" alt="" class="img-fluid">PREGUNCHACO</a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -81,8 +81,7 @@
     <div class="container">
       <h1>Bienvenido a PREGUNCHACO</h1>
       <h2>Juego de trivia sobre la provincializacion del Chaco</h2>
-      <a href="/login" class="btn-get-started scrollto">Loguearse</a>
-      <a href="/registro" class="btn-get-started scrollto">Registrarse</a>
+      <a href="#about" class="btn-get-started scrollto">Loguearse</a>
     </div>
   </section><!-- End Hero -->
 
@@ -204,7 +203,7 @@
 
         <div class="row">
 
-          <div class="col-lg-6 mt-6 mt-lg-0">
+          <div class="col-lg-6">
             <div class="member d-flex align-items-start">
               <div class="pic"><img src="/static/img/staff/Cristian Gonzalez.jpeg" class="img-fluid" alt=""></div>
               <div class="member-info">
@@ -219,7 +218,7 @@
             </div>
           </div>
 
-          <div class="col-lg-6 mt-6 mt-lg-0">
+          <div class="col-lg-6 mt-4 mt-lg-0">
             <div class="member d-flex align-items-start">
               <div class="pic"><img src="/static/img/staff/javier canteros.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
@@ -235,7 +234,7 @@
             </div>
           </div>
 
-          <div class="col-lg-6 mt-6 mt-lg-0">
+          <div class="col-lg-6 mt-4">
             <div class="member d-flex align-items-start">
               <div class="pic"><img src="/static/img/staff/Lourdes Fornes.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
@@ -251,7 +250,7 @@
             </div>
           </div>
 
-          <div class="col-lg-6 mt-6 mt-lg-0">
+          <div class="col-lg-6 mt-4">
             <div class="member d-flex align-items-start">
               <div class="pic"><img src="/static/img/staff/Edgardo Wawrzyniak.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
@@ -266,10 +265,10 @@
             </div>
           </div>
 
-          <div class="col-lg-6 mt-6 mt-lg-0">
+          <div class="col-lg-6 mt-4">
             <div class="member d-flex align-items-start">
               
-              <div class="pic"><img src="{% static 'img/staff/DiegoAltamirano.jpeg' %}" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="/static/img/staff/DiegoAltamirano.jpeg" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>Diego Altamirano</h4>
                 <span>Contador público</span>
