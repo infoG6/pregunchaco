@@ -1,15 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block contenido %}
-<section>
+<style>
+	.registro {
+	margin-top: 150px;	
+	display: flex;
+	align-items: center;
+	justify-content: center;	
+	}
+	.registro section {
+		margin-bottom: 80px;
+	}
+	.field {
+		display: flex;
+		flex-direction: column;
+	}
+	.field label {
+		font-weight: bold;
+	}
+
+	.field input {
+		max-width: 500px;
+	}
+</style>
+<section class="registro">
 <form method="POST">
 
 	{% csrf_token %}
 
-	{{form.as_p}}
-
-	<button type="submit">
-			Enviar
-	</button>
+	{% for field in form %}
+	<div class="field">
+		{{field.label_tag}}
+		{{field}}
+	</div>
+	{% endfor %}
+	<input class="btn-get-started scrollto" type="submit" value="Enviar">
 	
 </form>
 </section>

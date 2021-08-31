@@ -10,8 +10,7 @@ class Pregunta(models.Model):
 	NUMER_DE_RESPUESTAS_PERMITIDAS = 1
 
 	texto = models.TextField(verbose_name='Texto de la pregunta')
-	max_puntaje = models.DecimalField(verbose_name='Maximo Puntaje', default=3, decimal_places=2, max_digits=6)
-
+	max_puntaje = models.IntegerField(verbose_name='Maximo Puntaje', default=5 )
 	def __str__(self):
 		return self.texto 
 
@@ -30,7 +29,7 @@ class ElegirRespuesta(models.Model):
 
 class QuizUsuario(models.Model):
 	usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-	puntaje_total = models.DecimalField(verbose_name='Puntaje Total', default=0, decimal_places=2, max_digits=10)
+	puntaje_total = models.IntegerField(verbose_name='Puntaje Total', default=0)
 
 	def crear_intentos(self, pregunta):
 		intento = PreguntasRespondidas(pregunta=pregunta, quizUser=self)
@@ -73,4 +72,4 @@ class PreguntasRespondidas(models.Model):
 	pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE)
 	respuesta = models.ForeignKey(ElegirRespuesta, on_delete=models.CASCADE, null=True)
 	correcta  = models.BooleanField(verbose_name='¿Es esta la respuesta correcta?', default=False, null=False)
-	puntaje_obtenido = models.DecimalField(verbose_name='Puntaje Obtenido', default=0, decimal_places=2, max_digits=6)
+	puntaje_obtenido = models.IntegerField(verbose_name='Puntaje Obtenido', default=0)

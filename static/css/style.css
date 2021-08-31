@@ -540,6 +540,7 @@ h1, h2, h3, h4, h5, h6 {
   background: url("../img/chaco2.jpeg") top center;
   background-size: cover;
   margin-bottom: -200px;
+  margin-top: 200;
 
 }
 
@@ -1705,7 +1706,7 @@ section {
   font-size: 16px;
   font-weight: bold;
   color: #444444;
-  position: relative;
+  position: relative; 
   padding-bottom: 12px;
 }
 

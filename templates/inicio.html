@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+{% load static %}
 <html lang="es">
 
 <head>
@@ -12,7 +12,7 @@
 
   <!-- Favicons -->
   
-  <link href="/static/img/favicon.png" rel="icon">
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
   <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -29,7 +29,7 @@
   <link href="/static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="../static/css/style.css" rel="stylesheet">
+  <link href="/static/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Medilab - v4.3.0
@@ -59,15 +59,15 @@
     <div class="container d-flex align-items-center">
 
       <!--<h1 class="logo me-auto"><a href="index.html">PREGUNCHACO</a></h1> -->
-      <a href="index.html" class="logo me-auto"><img src="assets/img/logo.gif" alt="" class="img-fluid">PREGUNCHACO</a>
+      <a href="index.html" class="logo me-auto"><img src="/static/img/logo.gif" alt="" class="img-fluid">PREGUNCHACO</a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
+          <li><a class="nav-link scrollto active" href="{% url 'inicio' %}">Inicio</a></li>
           <li><a class="nav-link scrollto" href="#services">Como se juega</a></li>
-          <li><a class="nav-link scrollto" href="#">Tabla de Posiciones</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'tablero' %}">Tabla de Posiciones</a></li>
           <li><a class="nav-link scrollto" href="#doctors">staff</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -81,7 +81,8 @@
     <div class="container">
       <h1>Bienvenido a PREGUNCHACO</h1>
       <h2>Juego de trivia sobre la provincializacion del Chaco</h2>
-      <a href="#about" class="btn-get-started scrollto">Loguearse</a>
+      <a href="/login" class="btn-get-started scrollto">Loguearse</a>
+      <a href="/registro" class="btn-get-started scrollto">Registrarse</a>
     </div>
   </section><!-- End Hero -->
 
@@ -95,7 +96,7 @@
           <div class="col-lg-3 col-md-6">
             <div class="count-box">
               <i class="fas fa-question"></i>
-              <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="1" class="purecounter"></span>
               <p>Preguntas</p>
             </div>
           </div>
@@ -111,7 +112,7 @@
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
             <div class="count-box">
               <i class="fas fa-chart-line"></i>
-              <span data-purecounter-start="0" data-purecounter-end="35" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="100" data-purecounter-duration="1" class="purecounter"></span>
               <p>Mayor Puntaje</p>
             </div>
           </div>
@@ -203,13 +204,13 @@
 
         <div class="row">
 
-          <div class="col-lg-6">
+          <div class="col-lg-6 mt-6 mt-lg-0">
             <div class="member d-flex align-items-start">
               <div class="pic"><img src="/static/img/staff/Cristian Gonzalez.jpeg" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>Gonzalez Cristian </h4>
-                <span>Chief Medical Officer</span>
-                <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+                <span>Técnico universitario en gestión ambiental</span>
+                <p>Estudiante de Programacion</p>
                 <div class="social">
                   <a href=""><i class="ri-facebook-fill"></i></a>
                   <a href=""><i class="ri-instagram-fill"></i></a>
@@ -218,7 +219,7 @@
             </div>
           </div>
 
-          <div class="col-lg-6 mt-4 mt-lg-0">
+          <div class="col-lg-6 mt-6 mt-lg-0">
             <div class="member d-flex align-items-start">
               <div class="pic"><img src="/static/img/staff/javier canteros.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
@@ -234,7 +235,7 @@
             </div>
           </div>
 
-          <div class="col-lg-6 mt-4">
+          <div class="col-lg-6 mt-6 mt-lg-0">
             <div class="member d-flex align-items-start">
               <div class="pic"><img src="/static/img/staff/Lourdes Fornes.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
@@ -250,7 +251,7 @@
             </div>
           </div>
 
-          <div class="col-lg-6 mt-4">
+          <div class="col-lg-6 mt-6 mt-lg-0">
             <div class="member d-flex align-items-start">
               <div class="pic"><img src="/static/img/staff/Edgardo Wawrzyniak.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
@@ -265,10 +266,10 @@
             </div>
           </div>
 
-          <div class="col-lg-6 mt-4">
+          <div class="col-lg-6 mt-6 mt-lg-0">
             <div class="member d-flex align-items-start">
               
-              <div class="pic"><img src="/static/img/staff/DiegoAltamirano.jpeg" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="{% static 'img/staff/DiegoAltamirano.jpeg' %}" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>Diego Altamirano</h4>
                 <span>Contador público</span>
@@ -287,7 +288,7 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
+  <!--<footer id="footer">
 
     <div class="footer-top">
       <div class="container">
@@ -315,7 +316,7 @@
           <!-- All the links in the footer should remain intact. -->
           <!-- You can delete the links only if you purchased the pro version. -->
           <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/ 
           Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
       </div>
@@ -324,8 +325,22 @@
         <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
       </div>
     </div>
-  </footer><!-- End Footer -->
+  </footer> End Footer -->
 
+  <footer >
+    <div class="me-md-auto text-center text-md-start">
+      <div class="copyright">
+        &copy; Copyright <strong><span>PREGUNCHACO</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer>
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

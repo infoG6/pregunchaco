@@ -1,12 +1,42 @@
 {% extends 'base.html' %}
 {% block contenido %}
+<style>
+	.registro {
+	margin-top: 200px;	
+	display: flex;
+	align-items: center;
+	justify-content: center;	
+	}
+	.registro section {
+		margin-bottom: 100px;
+	}
+	.field {
+		display: flex;
+		flex-direction: column;
+	}
+	.field label {
+		font-weight: bold;
+	}
+
+	.field input {
+		max-width: 500px;
+	}
+</style>
+<section class="registro">
 <form method="POST">
 	{% csrf_token %}
 
-	{{form.as_p}}
-	<input class="btn btn-primary" type="submit" value="Loguearse">
+	
+	{% for field in form %}
+	<div class="field">
+		{{field.label_tag}}
+		{{field}}
+	</div>
+	{% endfor %}
+	<input class="btn-get-started scrollto" type="submit" value="Loguearse">
 	<a href="/registro" class="btn-get-started scrollto">Registrarse</a>
 
 
 </form>
 {% endblock %}
+</section>

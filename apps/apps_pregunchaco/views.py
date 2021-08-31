@@ -15,7 +15,7 @@ def inicio(request):
 
 	}
 
-	return render(request, 'index.html', context)
+	return render(request, 'inicio.html', context)
 
 
 def HomeUsuario(request):
