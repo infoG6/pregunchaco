@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-08-2021 a las 20:14:17
+-- Tiempo de generación: 02-09-2021 a las 03:32:18
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -58,7 +58,7 @@ INSERT INTO `apps_pregunchaco_elegirrespuesta` (`id`, `correcta`, `texto`, `preg
 (17, 1, '60.000', 5),
 (18, 0, '10.000', 5),
 (19, 0, '254.617', 5),
-(20, 0, 'Todas las anteriores', 5),
+(20, 0, '100.120', 5),
 (21, 0, 'Maipu', 6),
 (22, 0, 'Bermejo', 6),
 (23, 1, '12 de Octubre', 6),

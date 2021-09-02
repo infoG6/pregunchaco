@@ -6,17 +6,17 @@
 <div class="container">
 	
 	<div class="jumbotron my-4">
-		<h3 class="text-info">{{respondida.pregunta.texto|safe}}</h3>
+		<h3 class="alert alert-primary" role="alert">{{respondida.pregunta.texto|safe}}</h3>
 		<p>
-			<strong>Tu respuesta:</strong>
+			<strong class="alert alert-light" role="alert">Tu respuesta:</strong>
 			{{respondida.respuesta.texto|safe}}
 		</p>
 
 
 	{% if respondida.respuesta.correcta %}
-		<h4 class="text-success">Tu respuesta es correcta</h4>
+		<h4 class="alert alert-success" role="alert">Tu respuesta es correcta</h4>
 	{% else %}
-		<h4 class="text-danger">Tu respuesta es incorrecta!!!</h4>
+		<h4 class="alert alert-danger" role="alert">Tu respuesta es incorrecta!!!</h4>
 
 		{% for respuesta in respondida.pregunta.opciones.all %}
 
@@ -31,7 +31,7 @@
 	{% endif %}
 
 	<a href="{% url 'jugar' %}">
-		<button class="btn-success">
+		<button class="btn-get-started scrollto">
 			Continuar con la siguiente pregunta
 		</button>
 	</a>

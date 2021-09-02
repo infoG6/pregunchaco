@@ -8,12 +8,15 @@ from .models import QuizUsuario, Pregunta, PreguntasRespondidas
 
 
 def inicio(request):
+	total_usaurios_quiz = QuizUsuario.objects.order_by('-puntaje_total')[:1]
+	contador = total_usaurios_quiz.count()
 
 	context = {
 
-		'bienvenido': 'Bienvenido'
-
+		'usuario_quiz':total_usaurios_quiz,
+		'contar_user':contador
 	}
+	
 
 	return render(request, 'inicio.html', context)
 
@@ -34,6 +37,22 @@ def tablero(request):
 	}
 
 	return render(request, 'play/tablero.html', context)
+
+def maxPuntajes(request):
+	total_usaurios_quiz = QuizUsuario.objects.order_by('-puntaje_total')[:1]
+	contador = total_usaurios_quiz.count()
+
+	context = {
+
+		'usuario_quiz':total_usaurios_quiz,
+		'contar_user':contador
+	}
+	return render(request, 'inicio.html', context)
+
+
+
+
+
 
 def jugar(request):
 

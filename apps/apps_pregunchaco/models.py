@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-
+import datetime
 from django.contrib.auth.models import User
 
 import random
@@ -30,6 +30,7 @@ class ElegirRespuesta(models.Model):
 class QuizUsuario(models.Model):
 	usuario = models.OneToOneField(User, on_delete=models.CASCADE)
 	puntaje_total = models.IntegerField(verbose_name='Puntaje Total', default=0)
+	fecha = models.DateTimeField(default=datetime.datetime.now)
 
 	def crear_intentos(self, pregunta):
 		intento = PreguntasRespondidas(pregunta=pregunta, quizUser=self)
