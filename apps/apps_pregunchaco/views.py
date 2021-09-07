@@ -1,47 +1,34 @@
 from django.shortcuts import render, redirect, get_object_or_404
-
 from django.contrib.auth import authenticate, login, logout
-
 from .forms import RegistroFormulario, UsuarioLoginFormulario
-
 from .models import QuizUsuario, Pregunta, PreguntasRespondidas
-
 
 def inicio(request):
 	total_usaurios_quiz = QuizUsuario.objects.order_by('-puntaje_total')[:1]
 	contador = total_usaurios_quiz.count()
-
 	context = {
 
 		'usuario_quiz':total_usaurios_quiz,
 		'contar_user':contador
 	}
-	
-
 	return render(request, 'inicio.html', context)
 
-
 def HomeUsuario(request):
-
 	return render(request, 'Usuario/home.html')
-
 
 def tablero(request):
 	total_usaurios_quiz = QuizUsuario.objects.order_by('-puntaje_total')[:10]
 	contador = total_usaurios_quiz.count()
-
 	context = {
 
 		'usuario_quiz':total_usaurios_quiz,
 		'contar_user':contador
 	}
-
 	return render(request, 'play/tablero.html', context)
 
 def maxPuntajes(request):
 	total_usaurios_quiz = QuizUsuario.objects.order_by('-puntaje_total')[:1]
 	contador = total_usaurios_quiz.count()
-
 	context = {
 
 		'usuario_quiz':total_usaurios_quiz,
@@ -49,15 +36,8 @@ def maxPuntajes(request):
 	}
 	return render(request, 'inicio.html', context)
 
-
-
-
-
-
 def jugar(request):
-
 	QuizUser, created = QuizUsuario.objects.get_or_create(usuario=request.user)
-
 	if request.method == 'POST':
 		pregunta_pk = request.POST.get('pregunta_pk')
 		pregunta_respondida = QuizUser.intentos.select_related('pregunta').get(pregunta__pk=pregunta_pk)
@@ -80,7 +60,6 @@ def jugar(request):
 		context = {
 			'pregunta':pregunta
 		}
-
 	return render(request, 'play/jugar.html', context)
 
 
@@ -125,11 +104,8 @@ def registro(request):
 
 		'form':form,
 		'titulo': titulo
-
 	}
-
 	return render(request, 'Usuario/registro.html', context)
-
 
 def logout_vista(request):
 	logout(request)
